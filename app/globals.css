@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+html, body, #__next {
+height: 100%;
+}
+
+
+body {
+@apply bg-gradient-to-b from-[#050816] via-[#071129] to-[#02030a] text-white antialiased;
+}
+
+
+/* Glass / translucent container classes */
+.glass {
+@apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+}
+
+
+.glass-card {
+@apply bg-white/4 backdrop-blur-sm border border-white/6 rounded-2xl;
+}
+
+
+/* small utility */
+.card-image {
+@apply rounded-lg overflow-hidden w-full h-48 bg-gray-800 flex items-center justify-center;
+}
+/* For styling the dropdown options */
+option {
+  background-color: #111827; /* A dark gray */
+}
