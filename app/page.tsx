@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
 import AnimeFilters from '../components/AnimeFilters'
 import ResultsList from '../components/ResultsList'
+import BackgroundVideo from '../components/BackgroundVideo'
 
 // Define types
 interface Anime {
@@ -35,21 +36,6 @@ const Header = () => (
   </motion.div>
 );
 
-// BackgroundVideo component
-const BackgroundVideo = () => (
-  <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[-1]">
-    <div className="absolute inset-0 bg-black opacity-50" />
-    <video
-      src="/bg.mp4"
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="w-full h-full object-cover"
-    />
-  </div>
-);
-
 export default function Home() {
   const [filters, setFilters] = useState<Filters>({ genres: [], types: [], ratings: [] });
   const [genre, setGenre] = useState('');
@@ -65,7 +51,7 @@ export default function Home() {
 
   const fetchFilters = async () => {
     try {
-      const response = await fetch('https://anime-back-6cbc.onrender.com/api/filters');
+      const response = await fetch('http://localhost:5000/api/filters');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -83,7 +69,7 @@ export default function Home() {
     setRecommendations([]);
 
     try {
-      const response = await fetch('https://anime-back-6cbc.onrender.com/api/recommend', {
+      const response = await fetch('http://localhost:5000/api/recommend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ genre, type, rating }),
@@ -105,7 +91,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen">
       <BackgroundVideo />
       <div className="relative z-10 container mx-auto px-4 py-12">
         <Header />
