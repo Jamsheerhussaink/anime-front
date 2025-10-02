@@ -65,7 +65,7 @@ export default function Home() {
 
   const fetchFilters = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/filters');
+      const response = await fetch('https://anime-back-6cbc.onrender.com/api/filters');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -83,7 +83,7 @@ export default function Home() {
     setRecommendations([]);
 
     try {
-      const response = await fetch('http://localhost:5000/api/recommend', {
+      const response = await fetch('https://anime-back-6cbc.onrender.com/api/recommend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ genre, type, rating }),
